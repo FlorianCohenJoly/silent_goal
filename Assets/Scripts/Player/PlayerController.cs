@@ -8,6 +8,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private PlayerMovement m_Movement;
 
+    private bool isHidden = false;
+
+    public void SetIsHidden(bool hidden)
+    {
+        isHidden = hidden;
+    }
+
+    public bool GetIsHidden()
+    {
+        return isHidden;
+    }
+
     void Update()
     {
         float dirX = 0;

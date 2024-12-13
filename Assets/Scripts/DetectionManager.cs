@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class DetectionManager : MonoBehaviour
 {
-    public Defender defenderScript;
-    public float detectionAngle = 45f; 
-    public float detectionRange = 5f;  
-    private bool isPlayerHidden = false;
+    public Defender defenderScript; // Référence au script de l'ennemi
+    public float detectionAngle = 45f; // Angle du cône de vision
+    public float detectionRange = 5f;  // Portée du cône de vision
 
     void Update()
     {
@@ -17,15 +16,15 @@ public class DetectionManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
 
-        // Vérifie si le joueur est dans un bush
-        isPlayerHidden = IsPlayerInBush(player);
-
-        if (isPlayerHidden)
+        // Vérifie si le joueur est caché
+        PlayerController playerScript = player.GetComponent<PlayerController>();
+        if (playerScript != null && playerScript.GetIsHidden())
         {
-            defenderScript.LosePlayer();
+            defenderScript.LosePlayer(); // L'ennemi perd la trace du joueur
             return;
         }
 
+        // Calcul des distances et angles pour la détection
         Vector2 directionToPlayer = player.transform.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
 
@@ -49,19 +48,6 @@ public class DetectionManager : MonoBehaviour
         }
     }
 
-    bool IsPlayerInBush(GameObject player)
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(player.transform.position, 0.1f);
-        foreach (var collider in colliders)
-        {
-            if (collider.CompareTag("bush"))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     // Affiche le cône de vision dans l'éditeur Unity
     void OnDrawGizmos()
     {
@@ -73,16 +59,5 @@ public class DetectionManager : MonoBehaviour
         Gizmos.DrawLine(startPosition, startPosition + directionRight * detectionRange);
         Gizmos.DrawLine(startPosition, startPosition + directionLeft * detectionRange);
         Gizmos.DrawWireSphere(startPosition, detectionRange);
-
-        int segments = 20;
-        for (int i = 0; i < segments; i++)
-        {
-            float angle = -detectionAngle / 2 + (detectionAngle / segments) * i;
-            float nextAngle = -detectionAngle / 2 + (detectionAngle / segments) * (i + 1);
-            Vector3 currentDir = Quaternion.Euler(0, 0, angle) * transform.right;
-            Vector3 nextDir = Quaternion.Euler(0, 0, nextAngle) * transform.right;
-
-            Gizmos.DrawLine(startPosition + currentDir * detectionRange, startPosition + nextDir * detectionRange);
-        }
     }
 }
