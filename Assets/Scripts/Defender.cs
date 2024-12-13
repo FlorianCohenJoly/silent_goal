@@ -12,38 +12,42 @@ public class Defender : MonoBehaviour
     private bool isPlayerDetected = false;
     private bool movingToB;
 
-    public void Locomotion()
-{
-    if (isPlayerDetected && playerTransform != null)
-    {
-        // Suivre le joueur détecté
-        transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
-    }
-    else
-    {
-        // Mouvement de patrouille entre posA et posB
-        transform.position = Vector3.MoveTowards(transform.position, (movingToB ? posB : posA).transform.position, speed * Time.deltaTime);
-
-        // Vérifie si l'ennemi est proche de posA ou posB
-        if (Vector3.Distance(transform.position, posB.transform.position) < 0.1f)
-        {
-            // Oriente l'ennemi pour qu'il regarde vers posA sur l'axe Z et inverse la direction
-            transform.rotation = Quaternion.Euler(0, 0, 180);  // Regarde vers posA
-            movingToB = false;
-        }
-        else if (Vector3.Distance(transform.position, posA.transform.position) < 0.1f)
-        {
-            // Oriente l'ennemi pour qu'il regarde vers posB sur l'axe Z et inverse la direction
-            transform.rotation = Quaternion.Euler(0, 0, 0);  // Regarde vers posB
-            movingToB = true;
-        }
-    }
-}
-
-
     void Update()
     {
         Locomotion();
+    }
+
+    public void Locomotion()
+    {
+        if (isPlayerDetected && playerTransform != null)
+        {
+            // Suivre le joueur détecté
+            transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+
+            // Oriente l'ennemi vers le joueur
+            Vector3 directionToPlayer = playerTransform.position - transform.position;
+            float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+        else
+        {
+            // Mouvement de patrouille entre posA et posB
+            transform.position = Vector3.MoveTowards(transform.position, (movingToB ? posB : posA).transform.position, speed * Time.deltaTime);
+
+            // Vérifie si l'ennemi est proche de posA ou posB
+            if (Vector3.Distance(transform.position, posB.transform.position) < 0.1f)
+            {
+                // Oriente l'ennemi pour qu'il regarde vers posA sur l'axe Z et inverse la direction
+                transform.rotation = Quaternion.Euler(0, 0, 180);  // Regarde vers posA
+                movingToB = false;
+            }
+            else if (Vector3.Distance(transform.position, posA.transform.position) < 0.1f)
+            {
+                // Oriente l'ennemi pour qu'il regarde vers posB sur l'axe Z et inverse la direction
+                transform.rotation = Quaternion.Euler(0, 0, 0);  // Regarde vers posB
+                movingToB = true;
+            }
+        }
     }
 
     public void DetectPlayer(Transform player)
