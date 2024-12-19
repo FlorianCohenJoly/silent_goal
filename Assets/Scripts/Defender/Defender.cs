@@ -12,9 +12,12 @@ public class Defender : MonoBehaviour
     private bool isPlayerDetected = false;
     private bool movingToB;
 
+    private int yellowCard = 2;
+
     void Update()
     {
         Locomotion();
+        Debug.Log("Yellow card: " + yellowCard);
     }
 
     public void Locomotion()
@@ -54,6 +57,17 @@ public class Defender : MonoBehaviour
     {
         isPlayerDetected = true;
         playerTransform = player;
+
+        // Si le joueur est détecté, l'ennemi perd un carton jaune
+        yellowCard--;
+
+        if (yellowCard <= 0)
+        {
+            // L'ennemi n'a plus de carton jaunes, le joueur est capturé
+            Debug.Log("Player captured!");
+        }
+
+
     }
 
     public void LosePlayer()
