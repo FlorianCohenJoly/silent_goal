@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private PlayerMovement m_Movement;
+
+    public InventoryManager inventoryManager;
 
     private bool isHidden = false;
 
@@ -44,5 +44,11 @@ public class PlayerController : MonoBehaviour
         }
 
         m_Movement.Move(dirX, dirY);
+
+        // Utilisation d'un objet dans l'inventaire avec la touche E
+        if (Keyboard.current.eKey.wasPressedThisFrame && inventoryManager.HasItems())
+        {
+            inventoryManager.UseItem(0, gameObject); // Utilise le premier objet
+        }
     }
 }
