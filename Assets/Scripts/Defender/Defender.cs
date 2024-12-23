@@ -16,6 +16,8 @@ public class Defender : MonoBehaviour
     private int yellowCard = 0; // Le joueur commence sans carton
     public PlayerComportment playerComportment;
 
+
+
     void Update()
     {
         Locomotion();
@@ -27,6 +29,8 @@ public class Defender : MonoBehaviour
         {
             // Suivre le joueur détecté
             float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+
+
 
             if (distanceToPlayer <= chaseRange)
             {
@@ -44,6 +48,7 @@ public class Defender : MonoBehaviour
         }
         else
         {
+            if (posA == null || posB == null) return;
             // Mouvement de patrouille entre posA et posB
             transform.position = Vector3.MoveTowards(transform.position, (movingToB ? posB : posA).transform.position, speed * Time.deltaTime);
 
@@ -72,7 +77,7 @@ public class Defender : MonoBehaviour
     {
         isPlayerDetected = false;
         playerTransform = null;
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -97,4 +102,6 @@ public class Defender : MonoBehaviour
             }
         }
     }
+
+
 }
