@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     private float m_Deceleration;
 
-    
-    private float m_MoveSpeed = 7;
+
+    private float m_MoveSpeed = 5;
 
     private float _dirX = 0;
     private float _dirY = 0;

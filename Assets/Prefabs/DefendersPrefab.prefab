@@ -47,7 +47,6 @@ GameObject:
   - component: {fileID: 4325607677832921383}
   - component: {fileID: 4168845140556095547}
   - component: {fileID: 6870587629072936958}
-  - component: {fileID: 1808091842249539218}
   m_Layer: 0
   m_Name: Defender
   m_TagString: Untagged
@@ -151,10 +150,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.021250099, y: 0.14050055}
+  m_Offset: {x: -0.016637146, y: 0.0044202805}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -165,7 +164,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.184165, y: 1.1416655}
+  m_Size: {x: 0.38152206, y: 0.5742817}
   m_EdgeRadius: 0
 --- !u!114 &4168845140556095547
 MonoBehaviour:
@@ -182,6 +181,8 @@ MonoBehaviour:
   posA: {fileID: 8973230567352384473}
   posB: {fileID: 7970527010027190521}
   speed: 6.5
+  chaseRange: 5
+  playerComportment: {fileID: 0}
 --- !u!114 &6870587629072936958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,41 +198,6 @@ MonoBehaviour:
   defenderScript: {fileID: 4168845140556095547}
   detectionAngle: 45
   detectionRange: 5
---- !u!58 &1808091842249539218
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4530045909409134688}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0070827007, y: 0.21133316}
-  serializedVersion: 2
-  m_Radius: 1.6545765
 --- !u!1 &7970527010027190521
 GameObject:
   m_ObjectHideFlags: 0
