@@ -3,24 +3,32 @@ using UnityEngine;
 
 public class InvisibilityItem : MonoBehaviour, IUsable
 {
-    public float invisibleDuration = 5.0f;
+    public float hologramDuration = 3.0f;
+
+    // Couleur ou matériau pour l'effet hologramme
+    public Color hologramColor = new Color(0, 1, 1, 0.5f); // Cyan transparent
+    private Color originalColor;
 
     public void Use(GameObject player)
     {
         PlayerController playerController = player.GetComponent<PlayerController>();
         if (playerController != null)
         {
-            playerController.StartCoroutine(InvisibilityRoutine(player));
+            playerController.StartCoroutine(HologramRoutine(player));
         }
     }
 
-    private IEnumerator InvisibilityRoutine(GameObject player)
+    private IEnumerator HologramRoutine(GameObject player)
     {
-        // Désactiver l'apparence
+        // Obtenir le SpriteRenderer du joueur
         SpriteRenderer playerRenderer = player.GetComponent<SpriteRenderer>();
         if (playerRenderer != null)
         {
-            playerRenderer.enabled = false;
+            // Sauvegarder la couleur d'origine
+            originalColor = playerRenderer.color;
+
+            // Appliquer la couleur hologramme
+            playerRenderer.color = hologramColor;
         }
 
         // Empêcher la détection
@@ -30,12 +38,13 @@ public class InvisibilityItem : MonoBehaviour, IUsable
             playerController.SetIsHidden(true);
         }
 
-        yield return new WaitForSeconds(invisibleDuration);
+        // Attendre la durée spécifiée
+        yield return new WaitForSeconds(hologramDuration);
 
-        // Réactiver l'apparence
+        // Restaurer la couleur d'origine
         if (playerRenderer != null)
         {
-            playerRenderer.enabled = true;
+            playerRenderer.color = originalColor;
         }
 
         // Réactiver la détection

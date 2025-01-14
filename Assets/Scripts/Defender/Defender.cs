@@ -1,27 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Defender : MonoBehaviour
 {
     public GameObject posA;
     public GameObject posB;
     public float speed = 2.0f;
-    public float chaseRange = 5.0f; // Portée de poursuite
-    public UIManager uiManager;
-
-
+    public float chaseRange = 5.0f;
 
     private Transform playerTransform = null;
     private bool isPlayerDetected = false;
     private bool movingToB;
 
-    private int yellowCard = 0;
-
     public PlayerComportment playerComportment;
-
-
 
     void Update()
     {
@@ -79,40 +71,18 @@ public class Defender : MonoBehaviour
     {
         isPlayerDetected = false;
         playerTransform = null;
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && isPlayerDetected)
         {
-            if (isPlayerDetected) // L'ennemi touche le joueur uniquement s'il le poursuit
-            {
-                yellowCard++;
-                Debug.Log($"Player received yellow card {yellowCard}!");
-                if (yellowCard == 1)
-                {
-                    uiManager.uiPanelCard.SetActive(true);
-                    uiManager.yellowCardImage.SetActive(true);
-                    LosePlayer(); // Le joueur reçoit un carton jaune, l'ennemi arrête de le poursuivre
-                    playerComportment.Respawn();
+            // Ajoute un carton jaune via le CardManager
+            CardManager.Instance.AddYellowCard();
 
-                }
-                else if (yellowCard == 2)
-                {
-                    uiManager.yellowCardImage1.SetActive(true);
-
-                    uiManager.RedCardImage.SetActive(true);
-                    Debug.Log("Player received a red card and game over!");
-                    uiManager.timer.StopTimer();
-                    uiManager.retryPanel.SetActive(true);
-
-
-                }
-            }
+            // Arrête la poursuite et réinitialise la position du joueur
+            LosePlayer();
+            playerComportment.Respawn();
         }
     }
-
-
 }
