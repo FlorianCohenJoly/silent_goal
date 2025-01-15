@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InvisibilityItem : MonoBehaviour, IUsable
 {
-    public float hologramDuration = 3.0f;
+    public float hologramDuration = 3f;
 
     // Couleur ou matériau pour l'effet hologramme
     public Color hologramColor = new Color(0, 1, 1, 0.5f); // Cyan transparent

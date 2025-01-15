@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+
+    
     public void StartGame()
     {
         // Définit que le timer doit démarrer dans la scène du jeu
@@ -14,5 +16,10 @@ public class MenuManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void Cinematic()
+    {
+        SceneManager.LoadScene("Story");
     }
 }

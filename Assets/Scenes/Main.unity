@@ -7297,6 +7297,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363279990}
   m_CullTransparentMesh: 1
+--- !u!1 &366771421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 366771422}
+  m_Layer: 0
+  m_Name: --- Grids ---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &366771422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366771421}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 73.61239, y: 17.735884, z: -0.15339933}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1182477200}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &398487560
 GameObject:
   m_ObjectHideFlags: 0
@@ -25172,7 +25204,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.56, z: 0}
-  m_LocalScale: {x: 0.4182, y: 0.4182, z: 0.4182}
+  m_LocalScale: {x: 3.0529435, y: 3.0529435, z: 3.0529435}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 153394921}
@@ -25244,8 +25276,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 0e1bf898ed7a5b74cb2d91df9c655189, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -25315,9 +25347,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0005922699, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.09781075
 --- !u!114 &566513578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94345,8 +94377,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182477199}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 79.01229, y: 39.699356, z: -0.39031556}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.3999023, y: 21.963472, z: -0.23691623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -94356,7 +94388,7 @@ Transform:
   - {fileID: 1213156567}
   - {fileID: 979193519}
   - {fileID: 1904444290}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 366771422}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1195818761
 GameObject:
@@ -146027,6 +146059,10 @@ PrefabInstance:
       propertyPath: hologrameSprite
       value: 
       objectReference: {fileID: 7275466792068831197, guid: ed157127db2ec3c42a65364cb0b2eff8, type: 3}
+    - target: {fileID: 1083795472037330400, guid: 368d27b5890faed448ea3b90b1cc3998, type: 3}
+      propertyPath: hologramDuration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6157712693794856840, guid: 368d27b5890faed448ea3b90b1cc3998, type: 3}
       propertyPath: m_LocalPosition.x
       value: 95.96
@@ -146084,4 +146120,4 @@ SceneRoots:
   - {fileID: 213041583}
   - {fileID: 451527902}
   - {fileID: 1158843291}
-  - {fileID: 1182477200}
+  - {fileID: 366771422}
