@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class TeleportationOnNextGround : MonoBehaviour
 {
     private bool isTeleporting = false;
 
     public GameObject doorExit;
-
+    public GameObject particleEffect; // GameObject des particules
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,14 +21,21 @@ public class TeleportationOnNextGround : MonoBehaviour
     {
         isTeleporting = true;
 
+        // Activer les particules
+        particleEffect.SetActive(true);
+
+        // Délai pour jouer les particules
+        yield return new WaitForSeconds(2f); // Ajuster la durée selon vos besoins
+
+        // Désactiver les particules après le délai
+        particleEffect.SetActive(false);
+
+        // Téléportation
         player.transform.position = doorExit.transform.position;
 
         // Petit délai pour éviter une nouvelle téléportation instantanée
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
 
         isTeleporting = false;
     }
-
-
-
 }
