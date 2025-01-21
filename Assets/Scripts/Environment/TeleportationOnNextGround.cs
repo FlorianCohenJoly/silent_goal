@@ -9,6 +9,8 @@ public class TeleportationOnNextGround : MonoBehaviour
     public GameObject doorExit;
     public GameObject particleEffect; // GameObject des particules
 
+    public AudioSource goalSound;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !isTeleporting)
@@ -23,6 +25,9 @@ public class TeleportationOnNextGround : MonoBehaviour
 
         // Activer les particules
         particleEffect.SetActive(true);
+
+        // Jouer le son
+        goalSound.Play();
 
         // Délai pour jouer les particules
         yield return new WaitForSeconds(2f); // Ajuster la durée selon vos besoins
